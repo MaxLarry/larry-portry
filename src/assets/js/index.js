@@ -151,10 +151,10 @@ export function initPageTransitions() {
 function initScript() {
   select("body").classList.remove("is-loading");
   console.log("wwhhwwhwh...");
-  //initScrollLetters();
+  initScrollLetters();
 }
 
-function initScrollLetters() {
+export function initScrollLetters() {
   // Scrolling Letters Both Direction
   // https://codepen.io/GreenSock/pen/rNjvgjo
   // Fixed example with resizing

@@ -57,7 +57,7 @@ export function initPageTransitions() {
         once(data) {
           console.log("default transition once called");
           initSmoothScroll(data.next.container);
-          initScript();
+          //initScript();
           //initCookieViews();
           //initLoader();
         },
@@ -77,7 +77,7 @@ export function initPageTransitions() {
           ScrollTrigger.getAll().forEach((t) => t.kill());
           scroll.destroy();
           initSmoothScroll(data.next.container);
-          initScript();
+          //initScript();
         },
       },
       {
@@ -88,7 +88,7 @@ export function initPageTransitions() {
         },
         once(data) {
           initSmoothScroll(data.next.container);
-          initScript();
+          //initScript();
           //initCookieViews();
           initLoader();
         },
@@ -151,7 +151,7 @@ export function initPageTransitions() {
 function initScript() {
   select("body").classList.remove("is-loading");
   console.log("wwhhwwhwh...");
-  initScrollLetters();
+  //initScrollLetters();
 }
 
 export function initScrollLetters() {
@@ -163,13 +163,12 @@ export function initScrollLetters() {
   let direction = 1; // 1 = forward, -1 = backward scroll
 
   const roll1 = roll(".big-name .name-wrap", {duration: 18}),
-        roll2 = roll(".rollingText02", {duration: 10}, true),
         scroll = ScrollTrigger.create({
           trigger: document.querySelector('[data-scroll-container]'),
           onUpdate(self) {
             if (self.direction !== direction) {
               direction *= -1;
-              gsap.to([roll1, roll2], {timeScale: direction, overwrite: true});
+              gsap.to([roll1], {timeScale: direction, overwrite: true});
             }
           }
         });

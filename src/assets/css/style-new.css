@@ -1,6 +1,4 @@
-
 @import "./styleguide.css";
-
 main {
   box-sizing: border-box;
   overflow: hidden;
@@ -46,6 +44,8 @@ main.touch .main-wrap {
     position: relative;
   }
 }
+
+
 /* Logo site Name*/
 
 .logo-container {

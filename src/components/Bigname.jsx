@@ -6,13 +6,12 @@ gsap.registerPlugin(ScrollTrigger);
 
 function Bigname() {
   const containerRef = useRef(null);
-  const animationEvent = new CustomEvent('bigname-animation-ready');
-  
+  const animationEvent = new CustomEvent("bigname-animation-ready");
+
   useEffect(() => {
     const timer = setTimeout(() => {
       if (!containerRef.current) return;
 
-     
       let direction = 1;
 
       function roll(targets, vars, reverse) {
@@ -26,14 +25,12 @@ function Bigname() {
         });
 
         const elements = gsap.utils.toArray(targets);
-        const clones = elements.map(el => {
+        const clones = elements.map((el) => {
           let clone = el.cloneNode(true);
           el.parentNode.appendChild(clone);
 
           return clone;
         });
-
-        
 
         const positionClones = () =>
           elements.forEach((el, i) =>
@@ -41,18 +38,15 @@ function Bigname() {
               position: "absolute",
               overwrite: false,
               top: el.offsetTop,
-              left:
-                el.offsetLeft + (reverse ? -el.offsetWidth : el.offsetWidth),
-            })
+              left: el.offsetLeft + (reverse ? -el.offsetWidth : el.offsetWidth)})
           );
+          
         console.log("gumana na!");
         positionClones();
 
-        
         elements.forEach((el, i) =>
           tl.to([el, clones[i]], { xPercent: reverse ? 100 : -100, ...vars }, 0)
         );
-        
 
         window.addEventListener("resize", () => {
           let time = tl.totalTime();

@@ -304,3 +304,109 @@ export function pageTransitionOutPortfolioSingle() {
     "<"
   );
 }
+
+
+// Animation - Page Enter
+function pageTransitionOut() {
+  var tl = gsap.timeline();
+
+  tl.call(function() {
+      scroll.start();
+      $('.loading-container .loading-icon').removeClass('active');
+  });
+
+  if (document.querySelector('[data-transition-slide-in]')) {
+      tl.from("[data-transition-slide-in]", {
+          yPercent: 25,
+          opacity: 0,
+          duration: 1.2,
+          stagger: 0.05,
+          ease: Expo.easeOut,
+          delay: 0.5,
+          clearProps: "all"
+      }, "<");
+  }
+
+  if (document.querySelector('.home-header .col-logo svg path')) {
+      tl.from(".home-header .col-logo svg path", {
+          yPercent: 120,
+          duration: 1.2,
+          stagger: 0.05,
+          ease: Expo.easeOut,
+          delay: 0.3,
+          clearProps: "all"
+      }, "<");
+  }
+
+  if (document.querySelector('[data-transition-typewriter]')) {
+      tl.fromTo("[data-transition-typewriter] .single-char, [data-transition-typewriter] .single-word", {
+          display: "none"
+      }, {
+          display: "inline",
+          duration: 0.01,
+          stagger: 0.04,
+          ease: Expo.easeIn,
+          onComplete: function() {
+              $('[data-transition-typewriter]').find('.typewriter-bar').addClass('blink');
+          }
+      }, "< 0.7");
+  }
+
+  if (document.querySelector('[data-transition-portfolio-single-fade]')) {
+      tl.fromTo('[data-transition-portfolio-single-fade]', {
+          opacity: 0,
+          y: "4em"
+      }, {
+          opacity: 1,
+          duration: 1.2,
+          y: "0em",
+          delay: 0.1,
+          stagger: 0.05,
+          ease: Expo.easeOut,
+          clearProps: "all"
+      }, "< 0.25");
+  }
+
+  if (document.querySelector('[data-transition-portfolio-single-fade-alt]')) {
+      tl.fromTo('[data-transition-portfolio-single-fade-alt]', {
+          opacity: 0,
+      }, {
+          opacity: 1,
+          duration: 1.5,
+          delay: 0.1,
+          stagger: 0.05,
+          ease: Power1.easeOut,
+          clearProps: "all"
+      }, "<");
+  }
+
+  tl.call(function() {
+
+      if (document.querySelector('[data-transition-gradient]')) {
+          gsap.from("[data-transition-gradient]", {
+              scale: 0.5,
+              opacity: 0,
+              duration: 5,
+              ease: Expo.easeOut,
+              clearProps: "all"
+          }, "<");
+      }
+
+  }, null, 0);
+
+  tl.call(function() {
+      if (document.querySelector('[data-transition-scramble]')) {
+          tl.from("[data-transition-scramble]", {
+              duration: 0.6,
+              scrambleText: {
+                  text: "{original}",
+                  speed: 1.2,
+                  chars: scrambleCharacters,
+                  delimiter: " ",
+                  tweenLength: false
+              }
+          }, "<");
+      }
+  }, null, 2.5);
+
+}

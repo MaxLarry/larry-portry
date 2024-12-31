@@ -32,36 +32,35 @@ function Bigname() {
           return clone;
         });
 
-        const positionClones = () => {
-          const container = containerRef.current;
+        // const positionClones = () => {
+        //   const container = containerRef.current;
         
-          // Get bounding rect of the parent container for precise calculations
-          const containerRect = container.getBoundingClientRect();
+        //   // Get bounding rect of the parent container for precise calculations
+        //   const containerRect = container.getBoundingClientRect();
         
-          elements.forEach((el, i) => {
-            const rect = el.getBoundingClientRect(); // Get the original element's position and dimensions
-            const cloneLeft = rect.left - containerRect.left + (reverse ? -rect.width : rect.width);
+        //   elements.forEach((el, i) => {
+        //     const rect = el.getBoundingClientRect(); // Get the original element's position and dimensions
+        //     const cloneLeft = rect.left - containerRect.left + (reverse ? -rect.width : rect.width);
         
-            gsap.set(clones[i], {
-              position: "absolute",
-              overwrite: false,
-              top: rect.top - containerRect.top, // Vertical alignment with the original
-              left: cloneLeft,                  // Horizontal alignment next to the original
-            });
-          });
-        };
-        
-        // const positionClones = () =>
-        //   elements.forEach((el, i) =>
         //     gsap.set(clones[i], {
         //       position: "absolute",
         //       overwrite: false,
-        //       top: el.offsetTop,
-        //       left: el.offsetLeft + (reverse ? -el.offsetWidth : el.offsetWidth)})
-        //   );
+        //       top: rect.top - containerRect.top, // Vertical alignment with the original
+        //       left: cloneLeft,                  // Horizontal alignment next to the original
+        //     });
+        //   });
+        // };
+        
+        const positionClones = () =>
+          elements.forEach((el, i) =>
+            gsap.set(clones[i], {
+              position: "absolute",
+              overwrite: false,
+              top: el.offsetTop,
+              left: el.offsetLeft + (reverse ? -el.offsetWidth : el.offsetWidth)})
+          );
           
-        // console.log("gumana na!");
-        positionClones();
+        console.log("gumana na!");
 
         elements.forEach((el, i) =>
           tl.to([el, clones[i]], { xPercent: reverse ? 100 : -100, ...vars }, 0)

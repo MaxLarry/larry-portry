@@ -32,16 +32,35 @@ function Bigname() {
           return clone;
         });
 
-        const positionClones = () =>
-          elements.forEach((el, i) =>
+        const positionClones = () => {
+          const container = containerRef.current;
+        
+          // Get bounding rect of the parent container for precise calculations
+          const containerRect = container.getBoundingClientRect();
+        
+          elements.forEach((el, i) => {
+            const rect = el.getBoundingClientRect(); // Get the original element's position and dimensions
+            const cloneLeft = rect.left - containerRect.left + (reverse ? -rect.width : rect.width);
+        
             gsap.set(clones[i], {
               position: "absolute",
               overwrite: false,
-              top: el.offsetTop,
-              left: el.offsetLeft + (reverse ? -el.offsetWidth : el.offsetWidth)})
-          );
+              top: rect.top - containerRect.top, // Vertical alignment with the original
+              left: cloneLeft,                  // Horizontal alignment next to the original
+            });
+          });
+        };
+        
+        // const positionClones = () =>
+        //   elements.forEach((el, i) =>
+        //     gsap.set(clones[i], {
+        //       position: "absolute",
+        //       overwrite: false,
+        //       top: el.offsetTop,
+        //       left: el.offsetLeft + (reverse ? -el.offsetWidth : el.offsetWidth)})
+        //   );
           
-        console.log("gumana na!");
+        // console.log("gumana na!");
         positionClones();
 
         elements.forEach((el, i) =>
@@ -58,7 +77,7 @@ function Bigname() {
         return tl;
       }
 
-      const roll1 = roll(".big-name .name-wrap", { duration: 18 });
+      const roll1 = roll(".big-name .name-wrap", { duration: 17 });
 
       const scrollTrigger = ScrollTrigger.create({
         trigger: containerRef.current,

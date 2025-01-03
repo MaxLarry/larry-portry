@@ -20,7 +20,7 @@ export const initSmoothScroll = (container) => {
     smooth: true,
   });
 
-  window.onresize = scroll.update();
+  window.onresize = () => scroll.update();
 
   scroll.on("scroll", () => ScrollTrigger.update());
 
@@ -57,6 +57,23 @@ export const initSmoothScroll = (container) => {
 
   return scroll;
 };
+// function initSmoothScroll(container) {
+
+//   // Lenis: https://github.com/studio-freight/lenis
+//   scroll = new Lenis({
+//      // duration: 1
+//   });
+ 
+//   scroll.on('scroll', ScrollTrigger.update);
+
+//   gsap.ticker.add((time)=>{
+//      scroll.raf(time * 1000)
+//   });
+  
+//   gsap.ticker.lagSmoothing(0)
+  
+//   ScrollTrigger.refresh();
+// }  
 
 
 const initPageTransitions = () => {

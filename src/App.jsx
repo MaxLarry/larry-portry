@@ -115,7 +115,8 @@ function Wrapper() {
             initSmoothScroll(data.next.container);
             //useScrollLetters();
             //initCookieViews();
-            window.addEventListener("bigname-animation-ready", () => { initLoader();
+            window.addEventListener("bigname-animation-ready", () => { 
+              initLoader();
             });
             
           },

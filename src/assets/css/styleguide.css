@@ -85,7 +85,7 @@
   --gap-padding-x: clamp(1.5em, 9vw, 9.5em);
   --line-offset: 0.8em;
 
-  --title-size: max(5em, 7.5vw);
+  --title-size: clamp(5em, 7.5vw, 7.5em);
   --row-gap: max(1.75em, 1.75vw);
   --col-gap: max(1.75em, 1.75vw);
   --border-radius: 0.35em;

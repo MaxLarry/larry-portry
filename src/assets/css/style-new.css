@@ -646,7 +646,7 @@ main.touch .main-wrap {
 /* ------------------------- Home - Intro -------------------------------------------------- */
 
 .home-intro {
-  display: flex;
+  /* display: flex; */
   height: 100%;
   position: relative;
   padding-top: calc(var(--gap-padding-y) * 2);
@@ -670,7 +670,7 @@ main.touch .main-wrap {
   height: auto; /* Ensures height adjusts automatically */
   justify-content: center;
   align-items: center;
-  padding: 2rem; /* Adds spacing for better layout */
+  padding: 2rem;
   box-sizing: border-box;
 }
 
@@ -684,7 +684,6 @@ main.touch .main-wrap {
 @media (max-width: 480px) {
   .home-intro .container .animation-intro {
     min-height: 40vh; /* Further adjust for very small screens */
-    flex-direction: column; /* Ensure stacking layout */
   }
 }
 
@@ -692,6 +691,7 @@ main.touch .main-wrap {
   position: relative;
   color: var(--color-text-light);
   z-index: 1;
+  width: 100%;
 }
 
 .home-intro .container .text-mid h1 {
@@ -709,11 +709,12 @@ main.touch .main-wrap {
 .home-intro .container .title-wrapper {
   position: relative;
   width: 100%;
-  /* overflow: hidden; */
-  /* transform: translateY(calc(var(--title-size)* 0.3)); */
+  overflow: hidden;
+  transform: translateY(calc(var(--title-size) * 0.4));
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 900;
 }
 
 .home-intro .container .title-list {
@@ -731,8 +732,32 @@ main.touch .main-wrap {
   align-items: center;
   justify-content: center;
   width: 100%;
-  /* overflow: hidden; */
+  overflow: hidden;
   position: relative;
+}
+
+.home-intro .container h2 {
+  color: var(--color-text-light);
+  font-family: "Larry Sans", sans-serif;
+  font-weight: 1000;
+  overflow: hidden;
+  text-transform: uppercase;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-clamp: 2;
+  line-height: 1;
+  height: calc(1 * 2em);
+  text-align: center;
+  padding-top: 0.055em;
+  font-size: 50px;
+  line-height: 1;
+  font-size: calc(clamp(2em, 5vw, 50px) * 0.875);
+}
+
+.home-intro .container .single-title.hidden {
+  opacity: 0%;
+  visibility: hidden;
 }
 
 /* ------------------------- Wrap Work Grid -------------------------------------------------- */

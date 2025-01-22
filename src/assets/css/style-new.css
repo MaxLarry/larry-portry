@@ -6,14 +6,14 @@
 
 main {
   box-sizing: border-box;
-  overflow: hidden;
+  /* overflow: hidden; */
   width: 100vw;
-  position: fixed;
+  position: relative;
   height: 100%;
   background: var(--color-white);
 }
 
-.main-wrap::after {
+/* .main-wrap::after {
   display: block;
   position: absolute;
   content: "";
@@ -23,13 +23,13 @@ main {
   left: 0;
   background: var(--color-dark);
   z-index: -1;
-}
+} */
 
 .main-wrap {
   box-sizing: border-box;
-  width: 100vw;
+  width: 100%;
   will-change: transform;
-  position: fixed;
+  position: relative;
 }
 
 main.touch {
@@ -306,7 +306,7 @@ main.touch .main-wrap {
 
 /* ------------------------- Fixed Nav -------------------------------------------------- */
 
-.fixed-nav-back {
+/* .fixed-nav-back {
   background: linear-gradient(
     to right,
     hsla(220, 13%, 0%, 0.3) 40%,
@@ -322,9 +322,9 @@ main.touch .main-wrap {
 .nav-active .fixed-nav-back {
   opacity: 0.35;
   pointer-events: all;
-}
+} */
 
-.fixed-nav {
+/* .fixed-nav {
   position: fixed;
   right: 0;
   top: 0;
@@ -543,7 +543,7 @@ main.touch .main-wrap {
   .nav-active .fixed-nav .nav-row ul .btn:nth-child(4) {
     transition-delay: 0.19s;
   }
-}
+} */
 
 /* ------------------------- Home - Header -------------------------------------------------- */
 
@@ -551,6 +551,7 @@ main.touch .main-wrap {
   min-height: 110vh;
   display: flex;
   align-items: center;
+  position: relative;
   overflow: hidden;
 }
 
@@ -583,8 +584,8 @@ main.touch .main-wrap {
 
 /*--------------BIGNAME-----------------*/
 .home-header .big-name {
-  position: absolute;
-  bottom: 5vh;
+  position: relative;
+  bottom: 0;
   left: 0;
   width: 100%;
   padding-bottom: calc(var(--gap-padding-y) * 1.25);
@@ -646,22 +647,26 @@ main.touch .main-wrap {
 /* ------------------------- Home - Intro -------------------------------------------------- */
 
 .home-intro {
-  /* display: flex; */
-  height: 100%;
+  height: 200vh;
   position: relative;
   padding-top: calc(var(--gap-padding-y) * 2);
   padding-bottom: calc(var(--gap-padding-y));
 }
 
-.home-intro .container {
-  position: relative;
+.home-intro .container-intro {
+  position: sticky;
+  top: 0;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 100vh;
+  z-index: 100;
 }
 
-.home-intro .container .animation-intro {
+.home-intro .container-intro .animation-intro {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -675,26 +680,26 @@ main.touch .main-wrap {
 }
 
 @media (max-width: 768px) {
-  .home-intro .container .animation-intro {
+  .home-intro .container-intro .animation-intro {
     min-height: 50vh; /* Adjust for smaller screens */
     padding: 1rem; /* Reduce padding */
   }
 }
 
 @media (max-width: 480px) {
-  .home-intro .container .animation-intro {
+  .home-intro .container-intro .animation-intro {
     min-height: 40vh; /* Further adjust for very small screens */
   }
 }
 
-.home-intro .container .text {
+.home-intro .container-intro .text {
   position: relative;
   color: var(--color-text-light);
   z-index: 1;
   width: 100%;
 }
 
-.home-intro .container .text-mid h1 {
+.home-intro .container-intro .text-mid h1 {
   font-family: "Aclonica John", sans-serif;
   /* text-transform: uppercase; */
   font-size: max(1em, 1vw);
@@ -706,7 +711,7 @@ main.touch .main-wrap {
   opacity: 0%;
 }
 
-.home-intro .container .title-wrapper {
+.home-intro .container-intro .title-wrapper {
   position: relative;
   width: 100%;
   overflow: hidden;
@@ -717,7 +722,7 @@ main.touch .main-wrap {
   z-index: 900;
 }
 
-.home-intro .container .title-list {
+.home-intro .container-intro .title-list {
   position: absolute;
   top: 0;
   display: flex;
@@ -727,7 +732,7 @@ main.touch .main-wrap {
   /* transform: translateY(var(--current-slide-precentage)) rotate(0.001deg);
   transition: transform var(--animation-primary-expo); */
 }
-.home-intro .container .single-title {
+.home-intro .container-intro .single-title {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -736,7 +741,7 @@ main.touch .main-wrap {
   position: relative;
 }
 
-.home-intro .container h2 {
+.home-intro .container-intro h2 {
   color: var(--color-text-light);
   font-family: "Larry Sans", sans-serif;
   font-weight: 1000;
@@ -755,7 +760,7 @@ main.touch .main-wrap {
   font-size: calc(clamp(2em, 5vw, 50px) * 0.875);
 }
 
-.home-intro .container .single-title.hidden {
+.home-intro .container-intro .single-title.hidden {
   opacity: 0%;
   visibility: hidden;
 }

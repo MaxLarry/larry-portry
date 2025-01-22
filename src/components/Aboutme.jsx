@@ -1,22 +1,80 @@
-import React from "react";
+import React, { useEffect, useState, useRef } from "react";
 import EyeImage from "../assets/img/eyeyeye.png";
 import SideImage from "../assets/img/eyeyeye1.jpg";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 function Aboutme() {
+  const rightImageRef = useRef(null);
+  const leftImageRef = useRef(null);
+  const triggerRef = useRef(null);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (
+        !triggerRef.current ||
+        !rightImageRef.current ||
+        !leftImageRef.current ||
+        !containerRef.current
+      )
+        return;
+
+      let tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: triggerRef.current,
+          start: "top +=300px",
+          end: "bottom center",
+          // markers: true,
+          scrub: true,
+        },
+      });
+
+      tl.fromTo(
+        rightImageRef.current,
+        { x: 150, opacity: 0, rotate: 180 },
+        { x: 0, duration: 3, opacity: 1, rotate: 0 }
+      ).fromTo(
+        leftImageRef.current,
+        { x: -150, opacity: 0, rotate: -180 },
+        { x: 0, duration: 3, opacity: 1, rotate: 0 },
+        "<"
+      );
+    }, 0);
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
+
   return (
     <section
-      className="section home-intro px-2 lg:px-9 md:p-5 bg-[--color-dark-dark]"
+      className="home-intro px-2 lg:px-9 md:p-5 bg-[--color-dark-dark]"
       data-scroll-section
+      ref={triggerRef}
     >
-      <div className="container">
+      <div
+        className="container-intro"
+        ref={containerRef}
+        data-slides-amount="5"
+      >
         <div className="animation-intro">
           <div className="title-wrapper">
-          <div class="single-title hidden ">
-               <h2 class="xl hidden">Larry<br/> John</h2>
+            <div className="single-title hidden ">
+              <h2 className="xl hidden">
+                Larry
+                <br /> John
+              </h2>
             </div>
             <div className="title-list ">
               <div className="single-title">
-                <h2 className="xl">There is No<br />Rules.</h2>
+                <h2 className="xl">
+                  There is No
+                  <br />
+                  Rules.
+                </h2>
               </div>
               <div className="single-title">
                 <h2 className="xl">
@@ -25,7 +83,11 @@ function Aboutme() {
                 </h2>
               </div>
               <div className="single-title">
-                <h2 className="xl">Develop Design<br />Inspire.</h2>
+                <h2 className="xl">
+                  Develop Design
+                  <br />
+                  Inspire.
+                </h2>
               </div>
             </div>
           </div>
@@ -34,20 +96,23 @@ function Aboutme() {
               Web Developer/Designer
             </h1>
           </div>
-          <div className="EyeImage w-full justify-center items-center p-[1vw] flex flex-col z-20">
+          <div className="EyeImage w-full justify-center items-center p-[1vw] relative flex z-20">
             <img
               src={EyeImage}
               alt="larry-eye.jpg"
               className="object-cover max-h-72 w-5/6 "
             />
-            <div className="absolute z-50 right-0 -bottom-10">
+            <div
+              className="absolute z-50 right-0 -bottom-10 "
+              ref={rightImageRef}
+            >
               <img
                 src={SideImage}
                 alt=""
                 className="object-cover w-[20vw] max-w-60 aspect-square rounded-lg -rotate-3"
               />
             </div>
-            <div className="absolute z-50 left-0 -top-10">
+            <div className="absolute z-50 left-0 -top-10" ref={leftImageRef}>
               <img
                 src={SideImage}
                 alt=""

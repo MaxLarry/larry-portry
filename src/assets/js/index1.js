@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { gsap, Expo } from "gsap";
 import LocomotiveScroll from "locomotive-scroll";
+import Lenis from '@studio-freight/lenis';
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import barba from "@barba/core";
@@ -14,66 +15,65 @@ export function delay(n = 2000) {
   });
 }
 
-export const initSmoothScroll = (container) => {
-  const scroll = new LocomotiveScroll({
-    el: container.querySelector("[data-scroll-container]"),
-    smooth: true,
-  });
-
-  window.onresize = () => scroll.update();
-
-  scroll.on("scroll", () => ScrollTrigger.update());
-
-  ScrollTrigger.scrollerProxy("[data-scroll-container]", {
-    scrollTop(value) {
-      return arguments.length
-        ? scroll.scrollTo(value, 0, 0)
-        : scroll.scroll.instance.scroll.y;
-    },
-    getBoundingClientRect() {
-      return {
-        top: 0,
-        left: 0,
-        width: window.innerWidth,
-        height: window.innerHeight,
-      };
-    },
-    pinType: container.querySelector("[data-scroll-container]").style.transform
-      ? "transform"
-      : "fixed",
-  });
-
-  ScrollTrigger.defaults({
-    scroller: document.querySelector("[data-scroll-container]"),
-  });
-
-  // Remove old Locomotive Scrollbar
-  const scrollbar = document.querySelectorAll(".c-scrollbar");
-  if (scrollbar.length > 1) scrollbar[0].remove();
-
-  // Refresh ScrollTrigger on window update
-  ScrollTrigger.addEventListener("refresh", () => scroll.update());
-  ScrollTrigger.refresh();
-
-  return scroll;
-};
-// function initSmoothScroll(container) {
-
-//   // Lenis: https://github.com/studio-freight/lenis
-//   scroll = new Lenis({
-//      // duration: 1
+// export const initSmoothScroll = (container) => {
+//   const scroll = new LocomotiveScroll({
+//     el: container.querySelector("[data-scroll-container]"),
+//     smooth: true,
 //   });
- 
-//   scroll.on('scroll', ScrollTrigger.update);
 
-//   gsap.ticker.add((time)=>{
-//      scroll.raf(time * 1000)
+//   window.onresize = () => scroll.update();
+
+//   scroll.on("scroll", () => ScrollTrigger.update());
+
+//   ScrollTrigger.scrollerProxy("[data-scroll-container]", {
+//     scrollTop(value) {
+//       return arguments.length
+//         ? scroll.scrollTo(value, 0, 0)
+//         : scroll.scroll.instance.scroll.y;
+//     },
+//     getBoundingClientRect() {
+//       return {
+//         top: 0,
+//         left: 0,
+//         width: window.innerWidth,
+//         height: window.innerHeight,
+//       };
+//     },
+//     pinType: container.querySelector("[data-scroll-container]").style.transform
+//       ? "transform"
+//       : "fixed",
 //   });
-  
-//   gsap.ticker.lagSmoothing(0)
-  
+
+//   ScrollTrigger.defaults({
+//     scroller: document.querySelector("[data-scroll-container]"),
+//   });
+
+//   // Remove old Locomotive Scrollbar
+//   const scrollbar = document.querySelectorAll(".c-scrollbar");
+//   if (scrollbar.length > 1) scrollbar[0].remove();
+
+//   // Refresh ScrollTrigger on window update
+//   ScrollTrigger.addEventListener("refresh", () => scroll.update());
 //   ScrollTrigger.refresh();
-// }  
+
+//   return scroll;
+// };
+export function initSmoothScroll(container) {
+
+  scroll = new Lenis({
+     // duration: 1
+  });
+ 
+  scroll.on('scroll', ScrollTrigger.update);
+
+  gsap.ticker.add((time)=>{
+     scroll.raf(time * 1000)
+  });
+  
+  gsap.ticker.lagSmoothing(0)
+  
+  ScrollTrigger.refresh();
+}  
 
 
 const initPageTransitions = () => {

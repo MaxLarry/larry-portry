@@ -649,8 +649,6 @@ main.touch .main-wrap {
 .home-intro {
   height: 200vh;
   position: relative;
-  padding-top: calc(var(--gap-padding-y) * 2);
-  padding-bottom: calc(var(--gap-padding-y));
 }
 
 .home-intro .container-intro {
@@ -661,6 +659,7 @@ main.touch .main-wrap {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
   width: 100%;
   height: 100vh;
   z-index: 100;

@@ -51,7 +51,7 @@ function Aboutme() {
 
   return (
     <section
-      className="home-intro px-2 lg:px-9 md:p-5 bg-[--color-dark-dark]"
+      className="home-intro  bg-[--color-dark-dark]"
       data-scroll-section
       ref={triggerRef}
     >

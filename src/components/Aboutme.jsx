@@ -3,6 +3,7 @@ import EyeImage from "../assets/img/eyeyeye.png";
 import SideImage from "../assets/img/eyeyeye1.jpg";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import TreakWords from "./Trickword";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -34,14 +35,37 @@ function Aboutme() {
 
       tl.fromTo(
         rightImageRef.current,
-        { x: 150, opacity: 0, rotate: 180 },
+        { x: 150, opacity: 0, rotate: 100 },
         { x: 0, duration: 3, opacity: 1, rotate: 0 }
       ).fromTo(
         leftImageRef.current,
-        { x: -150, opacity: 0, rotate: -180 },
+        { x: -150, opacity: 0, rotate: -100 },
         { x: 0, duration: 3, opacity: 1, rotate: 0 },
         "<"
       );
+
+      gsap.utils.toArray(".span-lines.animate").forEach((triggerElement) => {
+        const targetElement =
+          triggerElement.querySelectorAll(".span-line-inner");
+
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: triggerElement,
+              toggleActions: "play none none reset",
+              start: "0% 100%",
+              end: "100% 0%",
+              markers: true,
+            },
+          })
+          .from(targetElement, {
+            y: "100%",
+            stagger: 0.01,
+            ease: "power3.out",
+            duration: 1,
+          });
+      });
+
     }, 0);
 
     return () => {
@@ -55,11 +79,7 @@ function Aboutme() {
       data-scroll-section
       ref={triggerRef}
     >
-      <div
-        className="container-intro"
-        ref={containerRef}
-        data-slides-amount="5"
-      >
+      <div className="container-intro" ref={containerRef}>
         <div className="animation-intro">
           <div className="title-wrapper">
             <div className="single-title hidden ">
@@ -139,13 +159,8 @@ function Aboutme() {
 
           {/* image animated* */}
         </div>
-        <div className="text-intro flex flex-col text-center text-[--color-text-light] justify-center items-center">
-          <div className="lg:w-1/2 w-full px-4 text-sm md:text-lg lg:text-lg">
-            Passionate and adaptable freelancer delivering high-quality work
-            that exceeds expectations. Continuously learning and staying ahead
-            of industry trends to provide cutting-edge solutions. Committed to
-            excellence, I am a reliable asset for any project.
-          </div>
+        <div className="text-intro flex flex-col align-middle text-[--color-text-light] justify-center ">
+          <TreakWords text="Passionate and adaptable freelancer delivering high-quality work that exceeds expectations. Continuously learning and staying ahead of industry trends to provide cutting-edge solutions. Committed to excellence, I am a reliable asset for any project." />
         </div>
       </div>
     </section>

@@ -764,3 +764,20 @@ main.touch .main-wrap {
 }
 
 /* ------------------------- Wrap Work Grid -------------------------------------------------- */
+.span-lines.animate .span-line {
+  position: relative;
+  display: inline-flex;
+  overflow: hidden;
+}
+
+.span-lines.animate .span-line .span-line-inner {
+  position: relative;
+  display: block;
+}
+
+
+/* .span-lines.animate .span-line {
+  position: relative;
+  display: inline-flex;
+  overflow: hidden;
+} */

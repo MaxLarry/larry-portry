@@ -12,6 +12,8 @@ function Aboutme() {
   const leftImageRef = useRef(null);
   const triggerRef = useRef(null);
   const containerRef = useRef(null);
+  const rightTextRef = useRef(null);
+  const leftTextRef = useRef(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -19,30 +21,77 @@ function Aboutme() {
         !triggerRef.current ||
         !rightImageRef.current ||
         !leftImageRef.current ||
-        !containerRef.current
+        !containerRef.current ||
+        !rightTextRef.current ||
+        !leftTextRef.current
       )
         return;
+
+        const textLeftSpan = leftTextRef.current?.querySelector('span');
+        const textRightSpan = rightTextRef.current?.querySelector('span');
 
       let tl = gsap.timeline({
         scrollTrigger: {
           trigger: triggerRef.current,
           start: "top +=300px",
           end: "bottom center",
-          // markers: true,
           scrub: true,
         },
+        stagger: 0.1,
       });
 
+      // Image animations
       tl.fromTo(
         rightImageRef.current,
-        { x: 150, opacity: 0, rotate: 100 },
-        { x: 0, duration: 3, opacity: 1, rotate: 0 }
+        { x: 150, opacity: 0, rotate: 10, y: -130 },
+        { x: 0, duration: 3, opacity: 1, rotate: 0, y: 0}
       ).fromTo(
         leftImageRef.current,
-        { x: -150, opacity: 0, rotate: -100 },
-        { x: 0, duration: 3, opacity: 1, rotate: 0 },
+        { x: -150, opacity: 0, rotate: -10, y: 130},
+        { x: 0, duration: 3, opacity: 1, rotate: 0, y: 0 },
         "<"
       );
+
+      // Text animations
+      tl.fromTo(
+        rightTextRef.current,
+        { x: 100, opacity: 0.5 },
+        { x: 0, duration: 2, opacity: 1 },
+        "<"
+      ).fromTo(
+        leftTextRef.current,
+        { x: -100, opacity: 0.5 },
+        { x: 0, duration: 2, opacity: 1 },
+        "<"
+      );
+
+      gsap.to(textLeftSpan, {
+        scrollTrigger: {
+          trigger: triggerRef.current,
+          start: "top center",
+          end: "bottom bottom",
+          scrub: true,
+          onUpdate: (self) => {
+            gsap.set(textLeftSpan, {
+              backgroundPosition: `${100 - self.progress * 100}% 0%`
+            });
+          }
+        }
+      });
+  
+      gsap.to(textRightSpan, {
+        scrollTrigger: {
+          trigger: triggerRef.current,
+          start: "top center", 
+          end: "bottom bottom",
+          scrub: true,
+          onUpdate: (self) => {
+            gsap.set(textRightSpan, {
+              backgroundPosition: `${self.progress * 100}% 0%`
+            });
+          }
+        }
+      });
 
       gsap.utils.toArray(".span-lines.animate").forEach((triggerElement) => {
         const targetElement =
@@ -55,7 +104,7 @@ function Aboutme() {
               toggleActions: "play none none reset",
               start: "0% 100%",
               end: "100% 0%",
-              markers: true,
+              // markers: true,
             },
           })
           .from(targetElement, {
@@ -66,6 +115,27 @@ function Aboutme() {
           });
       });
 
+      gsap.to(triggerRef.current, {
+        scrollTrigger: {
+          trigger: triggerRef.current,
+          start: "top center",
+          end: "bottom bottom",
+          scrub: true,
+          // markers: true,
+          onUpdate: (self) => {
+            let percentage;
+            if (self.progress <= 0.33) {
+              percentage = "0";
+            } else if (self.progress <= 0.66) {
+              percentage = "-33.33333333333333";
+            } else {
+              percentage = "-66.66666666666666";
+            }
+      
+            triggerRef.current.style.setProperty("--current-slide-percentage", `${percentage}%`);
+          },
+        },
+      });
     }, 0);
 
     return () => {
@@ -75,7 +145,7 @@ function Aboutme() {
 
   return (
     <section
-      className="home-intro  bg-[--color-dark-dark]"
+      className="home-intro  bg-[--color-dark]"
       data-scroll-section
       ref={triggerRef}
     >
@@ -112,15 +182,18 @@ function Aboutme() {
             </div>
           </div>
           <div className="text top-text">
-            <h1 className="flex justify-end text-in-right">
-              Web Developer/Designer
+            <h1
+              ref={rightTextRef}
+              className="flex justify-end text-in-right tracking-tighter"
+            >
+              <span>Web Developer/Designer</span>
             </h1>
           </div>
           <div className="EyeImage w-full justify-center items-center p-[1vw] relative flex z-20">
             <img
               src={EyeImage}
               alt="larry-eye.jpg"
-              className="object-cover max-h-72 w-5/6 "
+              className="object-cover max-h-72 w-5/6  rounded-3xl"
             />
             <div
               className="absolute z-50 right-0 -bottom-10 "
@@ -129,35 +202,22 @@ function Aboutme() {
               <img
                 src={SideImage}
                 alt=""
-                className="object-cover w-[20vw] max-w-60 aspect-square rounded-lg -rotate-3"
+                className="object-cover w-[20vw] max-w-60 aspect-square rounded-2xl -rotate-3"
               />
             </div>
             <div className="absolute z-50 left-0 -top-10" ref={leftImageRef}>
               <img
                 src={SideImage}
                 alt=""
-                className="object-cover w-[20vw] max-w-60 aspect-square rounded-lg rotate-3"
+                className="object-cover w-[20vw] max-w-60 aspect-square rounded-2xl rotate-3"
               />
             </div>
           </div>
-          <div className="text bottom-text flex flex-col justify-start">
-            <h1 className="text-in-left">Graphic Designer/Video Editor</h1>
+          <div className="text bottom-text flex flex-col justify-start mt-4">
+            <h1 ref={leftTextRef} className="text-in-left tracking-tighter">
+              <span>Graphic Designer/Video Editor</span>
+            </h1>
           </div>
-
-          {/* text middle* */}
-          {/* <div className="text-mid absolute text-9xl text-center text-[--color-text-light]">
-          <div className="relative">
-            <h1 className="z-30 text-stroke absolute inset-0">DEVELOP</h1>
-            <h1 className="z-10">DEVELOP</h1>
-          </div>
-          <h1 className="z-30 relative text-stroke">DESIGN</h1>
-          <div className="relative">
-            <h1 className="z-30 text-stroke absolute inset-0"> f</h1>
-            <h1 className="z-10"> f</h1>
-          </div>
-        </div> */}
-
-          {/* image animated* */}
         </div>
         <div className="text-intro flex flex-col align-middle text-[--color-text-light] justify-center ">
           <TreakWords text="Passionate and adaptable freelancer delivering high-quality work that exceeds expectations. Continuously learning and staying ahead of industry trends to provide cutting-edge solutions. Committed to excellence, I am a reliable asset for any project." />

@@ -50,7 +50,7 @@
 /* ------------------------- Colors & size & transition-------------------------------------------------- */
 
 :root {
-  --color-dark: #1a1c23;
+  --color-dark: #090a0b;
   --color-dark-dark: #020713;
   --color-light: #ffffff;
   --color-blue: #455ce9;
@@ -77,7 +77,7 @@
   --animation-fast: all 0.3s cubic-bezier(0.7, 0, 0.3, 1);
   --animation-smooth: all 0.7s cubic-bezier(0.7, 0, 0.3, 1);
   --animation-smooths: 0.6s cubic-bezier(0.75, 0, 0.25, 1);
-  --animation-slow: all 0.9s cubic-bezier(0.7, 0, 0.3, 1);
+  --animation-slow: 0.8s cubic-bezier(0.87, 0, 0.13, 1);
 
   --section-padding: clamp(5em, 21vh, 12em);
   --container-padding: clamp(2.5em, 8vw, 8em);
@@ -112,6 +112,53 @@
   }
 }
 
+/* ------------------------- Hide Scrollbar -------------------------------------------------- */
+
+body::-webkit-scrollbar{display: none;} /* Chrome, Safari, Opera */
+body {-ms-overflow-style: none;} /* IE & Edge */
+html {scrollbar-width: none;} /* Firefox */
+
+
+/* ------------------------- Custom Scrollbar -------------------------------------------------- */
+
+[data-scrollbar] {
+  width: 5px;
+  position: fixed;
+  top: 5px;
+  right: 5px;
+  bottom: 5px;
+  z-index: 999;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, width 0.3s ease-in-out;
+  opacity: 0;
+  justify-content: center;
+}
+
+[data-scrollbar] [data-scrollbar-thumb] {
+  min-height: 2em;
+  height: 4em;
+  background-color: #889c9a;
+  cursor: grab;
+  border-radius: 30px;
+  width: 100%;
+}
+
+.lenis-smooth.lenis-scrolling [data-scrollbar] {
+  opacity: 1;
+}
+
+[data-scrollbar]:hover,
+[data-scrollbar-drag="true"]  {
+  opacity: 1;
+  width: 9px;
+}
+
+@media screen and (min-width: 1024px) {
+  .lenis-smooth [data-scrollbar] {
+     display: flex;
+  }
+}
 
 /* ------------------------- Body -------------------------------------------------- */
 
@@ -137,7 +184,8 @@ body {
   line-height: 1.6;
   font-weight: 400;
   font-style: normal;
-  overflow: hidden;
+  overflow-x: hidden;
+  overscroll-behavior-y: none;
   font-size: 16px;
   font-size: clamp(16px, 1.2vw, 19px);
   background-color: var(--color-dark);
@@ -370,6 +418,7 @@ p a {
   left: 0;
   height: 100%;
   width: 100%;
+  pointer-events: none;
 }
 
 

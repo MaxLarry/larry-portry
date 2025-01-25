@@ -10,6 +10,7 @@ function Home() {
     <>
       <Header />
       <Aboutme />
+      <Aboutme />
     </>
   );
 }

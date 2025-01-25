@@ -62,6 +62,10 @@ export function initSmoothScroll(container) {
 
   scroll = new Lenis({
      // duration: 1
+     smooth: true,
+     smoothTouch: true,
+     touchMultiplier: 1.5, // Adjust touch sensitivity
+     wheelMultiplier: 1.0, 
   });
  
   scroll.on('scroll', ScrollTrigger.update);
@@ -155,10 +159,56 @@ const initPageTransitions = () => {
   });
 };
 
-function initScript() {
+function initCustomScrollbar() {
+  let scrollbar = document.querySelector('[data-scrollbar]');
+  let scrollbarHeight = scrollbar.getBoundingClientRect().height;
+  let thumb = document.querySelector('[data-scrollbar] [data-scrollbar-thumb]');
+  let thumbHeight = thumb.getBoundingClientRect().height;
+  let content = document.querySelector('[data-scroll-container]');
+  let contentHeight = content.getBoundingClientRect().height;
+
+  if (document.querySelector('[data-scrollbar-thumb-height="variable"]')) {
+    gsap.set(thumb, {
+      height: (scrollbarHeight / contentHeight) * scrollbarHeight
+    });
+    thumbHeight = (scrollbarHeight / contentHeight) * scrollbarHeight;
+  }
+
+  let scrollTween = gsap.to(thumb, {
+    y: scrollbarHeight - thumbHeight,
+    ease: "none",
+    scrollTrigger: {
+      start: '0%',
+      end: 'max',
+      scrub: true
+    }
+  });
+
+  Draggable.create(thumb, {
+    type: "y",
+    bounds: scrollbar,
+    inertia: false,
+    onDrag() {
+      let progress = gsap.utils.normalize(this.minY, this.maxY, this.y);
+      scroll.scrollTo((contentHeight - scrollbarHeight) * progress, {
+        immediate: true
+      });
+      $(scrollbar).attr('data-scrollbar-drag', 'true');
+    },
+    onRelease() {
+      let progress = gsap.utils.normalize(this.minY, this.maxY, this.y);
+      scrollTween.scrollTrigger.enable();
+      scrollTween.progress(progress);
+      $(scrollbar).attr('data-scrollbar-drag', 'false');
+    }
+  });
+}
+
+export function initScript() {
   select("body").classList.remove("is-loading");
   console.log("wwhhwwhwh...");
   //initScrollLetters();
+  initCustomScrollbar()
 }
 
 export const usePageTransitions = () => {

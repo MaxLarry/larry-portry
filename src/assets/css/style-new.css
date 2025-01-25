@@ -3,7 +3,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* ------------------------- Lenis -------------------------------------------------- */
 
+html.lenis {height: auto;}
+.lenis.lenis-smooth {scroll-behavior: auto; height: 100vh;}
+.lenis.lenis-smooth [data-lenis-prevent] {overscroll-behavior: contain;}
+.lenis.lenis-stopped {overflow: hidden;}
+.lenis.lenis-scrolling iframe {pointer-events: none;}
+
+
+[data-lenis] {
+  overflow: auto; /* Ensure the scroll container allows scrolling */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS devices */
+}
 main {
   box-sizing: border-box;
   /* overflow: hidden; */
@@ -41,14 +53,7 @@ main.touch .main-wrap {
   position: relative;
 }
 
-@media screen and (max-width: 1024px) {
-  main {
-    position: relative;
-  }
-  .main-wrap {
-    position: relative;
-  }
-}
+
 
 /* Logo site Name*/
 
@@ -108,6 +113,46 @@ main.touch .main-wrap {
 .cbd {
   overflow: hidden;
   position: relative;
+}
+/* ------------------------- Custom Scrollbar -------------------------------------------------- */
+
+[data-scrollbar] {
+  width: 5px;
+  position: fixed;
+  top: 5px;
+  right: 5px;
+  bottom: 5px;
+  z-index: 5000;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, width 0.3s ease-in-out;
+  opacity: 0;
+  justify-content: center;
+}
+
+[data-scrollbar] [data-scrollbar-thumb] {
+  min-height: 2em;
+  height: 4em;
+  background-color: #889c9a;
+  cursor: grab;
+  border-radius: 30px;
+  width: 100%;
+}
+
+.lenis-smooth.lenis-scrolling [data-scrollbar] {
+  opacity: 1;
+}
+
+[data-scrollbar]:hover,
+[data-scrollbar-drag="true"]  {
+  opacity: 1;
+  width: 9px;
+}
+
+@media screen and (min-width: 1024px) {
+  .lenis-smooth [data-scrollbar] {
+     display: flex;
+  }
 }
 
 /*-------------baybayin image-----------*/
@@ -678,6 +723,9 @@ main.touch .main-wrap {
 }
 
 @media (max-width: 768px) {
+  .home-intro .container-intro {
+    max-height: 70vh;
+  }
   .home-intro .container-intro .animation-intro {
     min-height: 50vh; /* Adjust for smaller screens */
     padding: 1rem; /* Reduce padding */
@@ -697,10 +745,23 @@ main.touch .main-wrap {
   width: 100%;
 }
 
-.home-intro .container-intro .text-mid h1 {
-  font-family: "Aclonica John", sans-serif;
+.home-intro .container-intro .text h1 {
+  font-family: "Larry Sans", sans-serif;
   /* text-transform: uppercase; */
   font-size: max(1em, 1vw);
+}
+
+.home-intro .container-intro .text .text-in-left>span {
+  background: linear-gradient(90deg, #e0eeee 50%, #252525 0);
+  background-size: 200% 100%;
+    color: transparent;
+  -webkit-background-clip: text;
+}
+.home-intro .container-intro .text .text-in-right>span {
+  background: linear-gradient(-90deg, #e0eeee 50%, #252525 0);
+  background-size: 200% 100%;
+    color: transparent;
+  -webkit-background-clip: text;
 }
 
 .text-stroke {
@@ -727,8 +788,8 @@ main.touch .main-wrap {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  /* transform: translateY(var(--current-slide-precentage)) rotate(0.001deg);
-  transition: transform var(--animation-primary-expo); */
+  transform: translateY(var(--current-slide-percentage)) rotate(0.001deg);
+  transition: transform var(--animation-slow);
 }
 .home-intro .container-intro .single-title {
   display: flex;

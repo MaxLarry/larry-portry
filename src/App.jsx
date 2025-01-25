@@ -5,7 +5,7 @@ import Aboutme from "./components/Aboutme";
 import Loading from "./components/Loading.jsx";
 import "./assets/css/style-new.css";
 import "./assets/css/locomotive-scroll.css";
-import { initLoader, initSmoothScroll, delay } from "./assets/js/index1.js";
+import { initLoader, initSmoothScroll, delay, initScript } from "./assets/js/index1.js";
 import {
   BrowserRouter as Router,
   Routes,
@@ -84,7 +84,7 @@ function Wrapper() {
             scroll = initSmoothScroll(data.next.container);
             //initScript();
             //initCookieViews();
-            //initLoader();
+            initScript();
           },
           async leave(data) {
             console.log("default transition leave called");
@@ -102,7 +102,7 @@ function Wrapper() {
             ScrollTrigger.getAll().forEach((t) => t.kill());
             scroll.destroy();
             scroll = initSmoothScroll(data.next.container);
-            //initScript();
+            initScript();
           },
         },
         {
@@ -118,6 +118,7 @@ function Wrapper() {
             window.addEventListener("bigname-animation-ready", () => { 
               initLoader();
             });
+            initScript();
             
           },
         },

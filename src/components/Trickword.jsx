@@ -1,9 +1,14 @@
 import React, { useEffect, useRef } from 'react';
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const TrickWords = ({ text }) => {
   const spanRef = useRef(null);
 
   useEffect(() => {
+    const timer = setTimeout(() => {
     if (spanRef.current) {
       const spanWord = spanRef.current;
       
@@ -28,7 +33,31 @@ const TrickWords = ({ text }) => {
           spanWord.appendChild(document.createTextNode(part));
         }
       });
+      
+      gsap.utils.toArray(spanRef.current).forEach((triggerElement) => {
+        const targetElement =
+          triggerElement.querySelectorAll(".span-line-inner");
+
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: triggerElement,
+              toggleActions: "play none none reset",
+              start: "0% 100%",
+              end: "100% 0%",
+              // markers: true,
+            },
+          })
+          .from(targetElement, {
+            y: "100%",
+            stagger: 0.01,
+            ease: "power3.out",
+            duration: 1,
+          });
+      });
+
     }
+  },0);
   }, [text]);
 
   return <div ref={spanRef} className="span-lines animate lg:w-1/2 w-full px-4 text-sm md:text-lg lg:text-xl text-center mx-auto"></div>;

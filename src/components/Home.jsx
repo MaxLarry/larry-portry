@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from "react";
 import Header from "./Header";
 import Aboutme from "./Aboutme";
+import Work from "./Work";
 
 function Home() {
   //  dito ka muna
@@ -10,7 +11,7 @@ function Home() {
     <>
       <Header />
       <Aboutme />
-      <Aboutme />
+      <Work />
     </>
   );
 }

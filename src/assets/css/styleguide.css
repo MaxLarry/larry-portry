@@ -47,6 +47,52 @@
   font-family: "Aclonica John";
   src: url("../fonts/aclonica/Aclonica-Regular.ttf") format("opentype");
 }
+
+@font-face {
+  font-family: "Syne John";
+  src: url("../fonts/syne/Syne-Regular.woff2") format("woff2"),
+       url("../fonts/syne/Syne-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400; /* Regular */
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Syne John";
+  src: url("../fonts/syne/Syne-Medium.woff2") format("woff2"),
+       url("../fonts/syne/Syne-Medium.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 500; /* Medium */
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Syne John";
+  src: url("../fonts/syne/Syne-SemiBold.woff2") format("woff2"),
+       url("../fonts/syne/Syne-SemiBold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 600; /* SemiBold */
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Syne John";
+  src: url("../fonts/syne/Syne-Bold.woff2") format("woff2"),
+       url("../fonts/syne/Syne-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700; /* Bold */
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Syne John";
+  src: url("../fonts/syne/Syne-ExtraBold.woff2") format("woff2"),
+       url("../fonts/syne/Syne-ExtraBold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 800; /* ExtraBold */
+  font-display: swap;
+}
+
 /* ------------------------- Colors & size & transition-------------------------------------------------- */
 
 :root {

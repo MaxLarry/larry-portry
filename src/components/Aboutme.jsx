@@ -27,8 +27,8 @@ function Aboutme() {
       )
         return;
 
-        const textLeftSpan = leftTextRef.current?.querySelector('span');
-        const textRightSpan = rightTextRef.current?.querySelector('span');
+      const textLeftSpan = leftTextRef.current?.querySelector("span");
+      const textRightSpan = rightTextRef.current?.querySelector("span");
 
       let tl = gsap.timeline({
         scrollTrigger: {
@@ -44,10 +44,10 @@ function Aboutme() {
       tl.fromTo(
         rightImageRef.current,
         { x: 150, opacity: 0, rotate: 10, y: -130 },
-        { x: 0, duration: 3, opacity: 1, rotate: 0, y: 0}
+        { x: 0, duration: 3, opacity: 1, rotate: 0, y: 0 }
       ).fromTo(
         leftImageRef.current,
-        { x: -150, opacity: 0, rotate: -10, y: 130},
+        { x: -150, opacity: 0, rotate: -10, y: 130 },
         { x: 0, duration: 3, opacity: 1, rotate: 0, y: 0 },
         "<"
       );
@@ -73,24 +73,24 @@ function Aboutme() {
           scrub: true,
           onUpdate: (self) => {
             gsap.set(textLeftSpan, {
-              backgroundPosition: `${100 - self.progress * 100}% 0%`
+              backgroundPosition: `${100 - self.progress * 100}% 0%`,
             });
-          }
-        }
+          },
+        },
       });
-  
+
       gsap.to(textRightSpan, {
         scrollTrigger: {
           trigger: triggerRef.current,
-          start: "top center", 
+          start: "top center",
           end: "bottom bottom",
           scrub: true,
           onUpdate: (self) => {
             gsap.set(textRightSpan, {
-              backgroundPosition: `${self.progress * 100}% 0%`
+              backgroundPosition: `${self.progress * 100}% 0%`,
             });
-          }
-        }
+          },
+        },
       });
 
       gsap.to(triggerRef.current, {
@@ -109,8 +109,11 @@ function Aboutme() {
             } else {
               percentage = "-66.66666666666666";
             }
-      
-            triggerRef.current.style.setProperty("--current-slide-percentage", `${percentage}%`);
+
+            triggerRef.current.style.setProperty(
+              "--current-slide-percentage",
+              `${percentage}%`
+            );
           },
         },
       });
@@ -159,14 +162,6 @@ function Aboutme() {
               </div>
             </div>
           </div>
-          <div className="text top-text">
-            <h1
-              ref={rightTextRef}
-              className="flex justify-end text-in-right tracking-tighter"
-            >
-              <span>Web Developer/Designer</span>
-            </h1>
-          </div>
           <div className="EyeImage w-full justify-center items-center p-[1vw] relative flex z-20">
             <img
               src={EyeImage}
@@ -191,14 +186,26 @@ function Aboutme() {
               />
             </div>
           </div>
-          <div className="text bottom-text flex flex-col justify-start mt-4">
+          <div className="mt-4 md:mt-8 lg:mt-14 text bottom-text flex flex-col justify-start">
             <h1 ref={leftTextRef} className="text-in-left tracking-tighter">
               <span>Graphic Designer/Video Editor</span>
             </h1>
           </div>
-        </div>
-        <div className="text-intro flex flex-col align-middle text-[--color-text-light] justify-center ">
-          <TreakWords text="Passionate and adaptable freelancer delivering high-quality work that exceeds expectations. Continuously learning and staying ahead of industry trends to provide cutting-edge solutions. Committed to excellence, I am a reliable asset for any project." />
+
+          <div className="text top-text">
+            <h1
+              ref={rightTextRef}
+              className="mt-4 flex justify-end text-in-right tracking-tighter"
+            >
+              <span>Web Developer/Designer</span>
+            </h1>
+          </div>
+          <div className="text-intro flex  text-[--color-text-light] ">
+            <TreakWords text="Passionate and adaptable freelancer delivering high-quality work that exceeds expectations. Continuously learning and staying ahead of industry trends to provide cutting-edge solutions. Committed to excellence, I am a reliable asset for any project." />
+          </div>
+          {/* <div className=" button-about relative flex w-full justify-end px-10 bottom-0 text-4xl cursor-pointer">
+            <a className=" text-slate-500 border border-slate-500 rounded-3xl px-4 py-2 hover:bg-slate-500 hover:text-white transition-all duration-300">About me</a>
+          </div> */}
         </div>
       </div>
     </section>

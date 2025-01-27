@@ -705,7 +705,7 @@ main.touch .main-wrap {
   align-items: center;
   overflow: hidden;
   width: 100%;
-  height: 100vh;
+  height: auto;
   z-index: 100;
 }
 
@@ -714,28 +714,12 @@ main.touch .main-wrap {
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-height: 70vh; /* Sets a minimum height relative to viewport */
-  height: auto; /* Ensures height adjusts automatically */
+  min-height: 70vh;
+  height: auto; 
   justify-content: center;
   align-items: center;
   padding: 2rem;
   box-sizing: border-box;
-}
-
-@media (max-width: 768px) {
-  .home-intro .container-intro {
-    max-height: 70vh;
-  }
-  .home-intro .container-intro .animation-intro {
-    min-height: 50vh; /* Adjust for smaller screens */
-    padding: 1rem; /* Reduce padding */
-  }
-}
-
-@media (max-width: 480px) {
-  .home-intro .container-intro .animation-intro {
-    min-height: 40vh; /* Further adjust for very small screens */
-  }
 }
 
 .home-intro .container-intro .text {
@@ -746,9 +730,10 @@ main.touch .main-wrap {
 }
 
 .home-intro .container-intro .text h1 {
-  font-family: "Larry Sans", sans-serif;
+  font-family: "Syne John", sans-serif;
   /* text-transform: uppercase; */
-  font-size: max(1em, 1vw);
+  font-weight: 800;
+  font-size: calc(clamp(1em, 2vw, 50px) *1);
 }
 
 .home-intro .container-intro .text .text-in-left>span {
@@ -764,11 +749,6 @@ main.touch .main-wrap {
   -webkit-background-clip: text;
 }
 
-.text-stroke {
-  -webkit-text-stroke: 0.1px var(--color-text-light); /* Tiny stroke effect for WebKit */
-  color: transparent; /* Stroke-only look */
-  opacity: 0%;
-}
 
 .home-intro .container-intro .title-wrapper {
   position: relative;
@@ -819,6 +799,33 @@ main.touch .main-wrap {
   font-size: calc(clamp(2em, 5vw, 50px) * 0.875);
 }
 
+.home-intro .container-intro .text-intro .animate{
+  font-family: 'Syne John', sans-serif;
+  font-size: clamp(1em, 2vw, 50px);
+  font-weight: 100;
+  width: 65%;
+}
+
+.home-intro .container-intro .text-intro {
+  margin-top: 2.5rem;
+}
+
+
+@media (max-width: 768px) {
+  .home-intro .container-intro .animation-intro {
+    min-height: 50vh;
+  }
+  .home-intro .container-intro .text-intro .animate {
+    width: 100%;
+
+  }
+  
+}
+@media screen and (max-width: 480px) { /* Mobile */
+  .home-intro .container-intro .text-intro .animate {
+    width: 100%;
+  }
+}
 .home-intro .container-intro .single-title.hidden {
   opacity: 0%;
   visibility: hidden;

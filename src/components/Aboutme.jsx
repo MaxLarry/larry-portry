@@ -200,7 +200,7 @@ function Aboutme() {
               <span>Web Developer/Designer</span>
             </h1>
           </div>
-          <div className="text-intro flex  text-[--color-text-light] ">
+          <div className="text-intro flex justify-center text-[--color-text-light] ">
             <TreakWords text="Passionate and adaptable freelancer delivering high-quality work that exceeds expectations. Continuously learning and staying ahead of industry trends to provide cutting-edge solutions. Committed to excellence, I am a reliable asset for any project." />
           </div>
           {/* <div className=" button-about relative flex w-full justify-end px-10 bottom-0 text-4xl cursor-pointer">

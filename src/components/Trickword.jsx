@@ -60,7 +60,7 @@ const TrickWords = ({ text }) => {
   },0);
   }, [text]);
 
-  return <div ref={spanRef} className="span-lines animate"></div>;
+  return <div ref={spanRef} className="span-lines animate text-center"></div>;
 };
 
 export default TrickWords;

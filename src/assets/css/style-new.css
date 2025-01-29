@@ -801,13 +801,13 @@ main.touch .main-wrap {
 
 .home-intro .container-intro .text-intro .animate{
   font-family: 'Syne John', sans-serif;
-  font-size: clamp(1em, 2vw, 50px);
+  font-size: clamp(1em, 1.5vw, 40px);
   font-weight: 100;
-  width: 65%;
 }
 
 .home-intro .container-intro .text-intro {
   margin-top: 2.5rem;
+  width: 70%;
 }
 
 
@@ -817,8 +817,11 @@ main.touch .main-wrap {
   }
   .home-intro .container-intro .text-intro .animate {
     width: 100%;
-
   }
+  .home-intro .container-intro .text-intro {
+    width: 100%;
+  }
+  
   
 }
 @media screen and (max-width: 480px) { /* Mobile */

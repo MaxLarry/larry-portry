@@ -5,12 +5,22 @@
 @tailwind utilities;
 /* ------------------------- Lenis -------------------------------------------------- */
 
-html.lenis {height: auto;}
-.lenis.lenis-smooth {scroll-behavior: auto; height: 100vh;}
-.lenis.lenis-smooth [data-lenis-prevent] {overscroll-behavior: contain;}
-.lenis.lenis-stopped {overflow: hidden;}
-.lenis.lenis-scrolling iframe {pointer-events: none;}
-
+html.lenis {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+  height: 100vh;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
 
 [data-lenis] {
   overflow: auto; /* Ensure the scroll container allows scrolling */
@@ -52,8 +62,6 @@ main.touch {
 main.touch .main-wrap {
   position: relative;
 }
-
-
 
 /* Logo site Name*/
 
@@ -144,14 +152,14 @@ main.touch .main-wrap {
 }
 
 [data-scrollbar]:hover,
-[data-scrollbar-drag="true"]  {
+[data-scrollbar-drag="true"] {
   opacity: 1;
   width: 9px;
 }
 
 @media screen and (min-width: 1024px) {
   .lenis-smooth [data-scrollbar] {
-     display: flex;
+    display: flex;
   }
 }
 
@@ -715,7 +723,7 @@ main.touch .main-wrap {
   flex-direction: column;
   width: 100%;
   min-height: 70vh;
-  height: auto; 
+  height: auto;
   justify-content: center;
   align-items: center;
   padding: 2rem;
@@ -732,23 +740,24 @@ main.touch .main-wrap {
 .home-intro .container-intro .text h1 {
   font-family: "Syne John", sans-serif;
   /* text-transform: uppercase; */
-  font-weight: 800;
-  font-size: calc(clamp(1em, 2vw, 50px) *1);
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: normal;
+  font-size: calc(clamp(1em, 2vw, 50px) * 1);
 }
 
-.home-intro .container-intro .text .text-in-left>span {
-  background: linear-gradient(90deg, #e0eeee 50%, #252525 0);
+.home-intro .container-intro .text .text-in-left > span {
+  background: linear-gradient(90deg, var(--color-blue-text) 50%, #252525 0);
   background-size: 200% 100%;
-    color: transparent;
+  color: transparent;
   -webkit-background-clip: text;
 }
-.home-intro .container-intro .text .text-in-right>span {
-  background: linear-gradient(-90deg, #e0eeee 50%, #252525 0);
+.home-intro .container-intro .text .text-in-right > span {
+  background: linear-gradient(-90deg, var(--color-blue-text) 50%, #252525 0);
   background-size: 200% 100%;
-    color: transparent;
+  color: transparent;
   -webkit-background-clip: text;
 }
-
 
 .home-intro .container-intro .title-wrapper {
   position: relative;
@@ -781,7 +790,7 @@ main.touch .main-wrap {
 }
 
 .home-intro .container-intro h2 {
-  color: var(--color-text-light);
+  color: var(--color-lightgray);
   font-family: "Larry Sans", sans-serif;
   font-weight: 1000;
   overflow: hidden;
@@ -799,8 +808,9 @@ main.touch .main-wrap {
   font-size: calc(clamp(2em, 5vw, 50px) * 0.875);
 }
 
-.home-intro .container-intro .text-intro .animate{
-  font-family: 'Syne John', sans-serif;
+.home-intro .container-intro .text-intro .animate {
+  font-family: "Syne John", sans-serif;
+  color: var(--color-lightgray);
   font-size: clamp(1em, 1.5vw, 40px);
   font-weight: 100;
 }
@@ -809,7 +819,6 @@ main.touch .main-wrap {
   margin-top: 2.5rem;
   width: 70%;
 }
-
 
 @media (max-width: 768px) {
   .home-intro .container-intro .animation-intro {
@@ -821,10 +830,9 @@ main.touch .main-wrap {
   .home-intro .container-intro .text-intro {
     width: 100%;
   }
-  
-  
 }
-@media screen and (max-width: 480px) { /* Mobile */
+@media screen and (max-width: 480px) {
+  /* Mobile */
   .home-intro .container-intro .text-intro .animate {
     width: 100%;
   }
@@ -846,9 +854,84 @@ main.touch .main-wrap {
   display: block;
 }
 
-
 /* .span-lines.animate .span-line {
   position: relative;
   display: inline-flex;
   overflow: hidden;
+} */
+
+
+/* ------------------------------BUTTON-------------------------------------------- */
+.button,
+button {
+  font-family: "Syne John", sans-serif;
+  cursor: pointer;
+  font-size: 1rem;
+  background: transparent;
+  line-height: 1.188rem;
+  position: relative;
+  padding: 0;
+  border-radius: 2.125em;
+  min-width: 1em;
+  height: 3.25em;
+  /* float: left; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  text-align: center;
+  outline: none;
+  border: 0;
+}
+
+@media (min-width: 280px) {
+  .button,
+  .form-button,
+  button {
+    font-size: 1.1rem;
+    line-height: 1rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .button,
+  .form-button,
+  button {
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+  }
+}
+
+.btn-classy {
+  position: relative;
+  display: flex;
+  z-index: 5;
+  border: 0;
+  outline: 0;
+}
+
+.btn-classy .btn-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0 2.5em;
+  z-index: 2;
+  position: relative;
+  transform: rotate(0.001deg);
+  pointer-events: none;
+}
+
+.btn-classy .button {
+  -webkit-box-shadow: inset 0px 0px 0px 1px var(--color-border-light);
+  box-shadow: inset 0px 0px 0px 1px var(--color-border-light);
+}
+
+.btn .btn-classy .button .btn-text-inner {
+  color: var(--color-blue-text);
+}
+
+/* .btn-normal.not-active .btn-click .btn-text-inner {
+  transition: var(--animation-smooth);
 } */

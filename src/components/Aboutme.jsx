@@ -4,6 +4,7 @@ import SideImage from "../assets/img/eyeyeye1.jpg";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import TreakWords from "./Trickword";
+import Button from "./Button";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -203,8 +204,15 @@ function Aboutme() {
           <div className="text-intro flex justify-center text-[--color-text-light] ">
             <TreakWords text="Passionate and adaptable freelancer delivering high-quality work that exceeds expectations. Continuously learning and staying ahead of industry trends to provide cutting-edge solutions. Committed to excellence, I am a reliable asset for any project." />
           </div>
-          {/* <div className=" button-about relative flex w-full justify-end px-10 bottom-0 text-4xl cursor-pointer">
-            <a className=" text-slate-500 border border-slate-500 rounded-3xl px-4 py-2 hover:bg-slate-500 hover:text-white transition-all duration-300">About me</a>
+          <Button text="About me" location='\'/>
+          {/* <div className="button-about w-full px-10 bottom-0 text-4xl mt-20">
+            <div className="btn-classy w-full justify-center">
+              <a className="button" href="/" aria-label="About me">
+                <span className="btn-text">
+                  <span className="btn-text-inner change">About me</span>
+                </span>
+              </a>
+            </div>
           </div> */}
         </div>
       </div>

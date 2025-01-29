@@ -99,7 +99,8 @@
   --color-dark: #090a0b;
   --color-dark-dark: #020713;
   --color-light: #ffffff;
-  --color-blue: #455ce9;
+  --color-blue: #036167;
+  --color-blue-text: #a0dfe3;
   --color-blue-dark: #021526;
   --color-yellow: #f7da00;
   --color-lightgray: #e9eaeb;
@@ -246,13 +247,13 @@ body {
 
 /* Selection */
 ::selection {
-  background-color: var(--color-blue);
-  color: var(--color-white);
+  background-color: transparent;
+  color: var(--color-blue);
   text-shadow: none;
 }
 ::-moz-selection {
-  background-color: var(--color-blue);
-  color: var(--color-white);
+  background-color: transparent;
+  color: var(--color-blue);
   text-shadow: none;
 }
 
@@ -280,8 +281,12 @@ video {
 }
 
 /* ------------------------- Typography -------------------------------------------------- */
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
 
-h1,
+ h1,
 h2,
 h3,
 h4,
@@ -297,22 +302,8 @@ strong,
 em {
   padding: 0;
   margin: 0;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: normal;
 }
-h1:last-child,
-h2:last-child,
-h3:last-child,
-h4:last-child,
-p:last-child,
-p.big:last-child,
-p.small:last-child,
-a:last-child,
-strong:last-child {
-  margin-bottom: 0;
-}
-
+/*
 h1 {
   font-family: "John Sans", sans-serif;
   font-weight: 400;
@@ -402,7 +393,7 @@ p a {
 .theme-dark h5,
 .theme-dark p {
   color: var(--color-white);
-}
+} */
 
 /* ------------------------- Main Elements -------------------------------------------------- */
 
